@@ -5,6 +5,7 @@ const $ = require( "jquery" );
 const { v4: uuid } = require("uuid");
 const io = require("socket.io")(server);
 const { ExpressPeerServer } = require("peer");
+const port = 3030;
 const peerServer = ExpressPeerServer(server, {
   debug: true,
 });
