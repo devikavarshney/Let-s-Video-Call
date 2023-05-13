@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
+const $ = require( "jquery" );
 const { v4: uuid } = require("uuid");
 const io = require("socket.io")(server);
 const { ExpressPeerServer } = require("peer");
@@ -24,6 +25,10 @@ io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId) => {
     socket.join(roomId);
     socket.to(roomId).emit("user-connected", userId);
+    socket.on('message', message =>{
+      io.to(roomId).emit('createMessage', message);
+    })
+
   });
 });
 
