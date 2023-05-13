@@ -103,3 +103,7 @@ video{
 .message{
     padding-bottom: 10px;
 }
+
+.unmute{
+    color: #cc3b33;
+}
