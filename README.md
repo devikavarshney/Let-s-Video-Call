@@ -1,6 +1,11 @@
 # Let's Video Call
+Let’s Video Call is a web app used to call people with your video and audio on, anywhere in the world.
 
-Let's Video Call is a web app used to call your friends with your video and audio anywhere in the world. 
+## Tech
+* Node.js
+* EJS
+* JavaScript
+* CSS
 
 ## Usage
 
