@@ -4,9 +4,9 @@ const myVideo = document.createElement("video");
 myVideo.muted = true;
 
 var peer = new Peer(undefined, {
-  path: "/peerjs",
-  host: "/",
-  port: "443",
+  // path: "/peerjs",
+  // host: "/",
+  // port: "443",
 });
 
 let myVideoStream;
@@ -14,7 +14,7 @@ let myVideoStream;
 navigator.mediaDevices
   .getUserMedia({
     video: true,
-    audio: true,
+    audio: true
   })
   .then((stream) => {
     myVideoStream = stream;
@@ -31,19 +31,20 @@ navigator.mediaDevices
     socket.on("user-connected", (userId) => {
       connectToNewUser(userId, stream);
     });
+
     let text = $('input');
 
     $('html').keydown((e) => {
       if (e.which == 13 && text.val().length !== 0) {
-        console.log(text.val());
+        // console.log(text.val());
         socket.emit('message', text.val());
-        text.val('');
+        text.val("");
       }
     })
 
     socket.on('createMessage', message => {
-      console.log(message);
-      $(".messages").append(`<li class="message"><b>user</b><br/>${message}</li>`)
+      // console.log(message);
+      $(".messages").append(`<li class="message"><b>user</b><br>${message}</li>`)
       scrollToBottom();
     })
   });
@@ -101,13 +102,13 @@ const setUnmuteButton = () => {
 const playStop = () => {
   console.log('object');
   let enabled = myVideoStream.getVideoTracks()[0].enabled;
-  if(enabled){
-    myVideoStream.getVideoTracks()[0].enabled=false;
+  if (enabled) {
+    myVideoStream.getVideoTracks()[0].enabled = false;
     setPlayVideo();
   }
-  else{
+  else {
     {
-      myVideoStream.getVideoTracks()[0].enabled=true;
+      myVideoStream.getVideoTracks()[0].enabled = true;
       setStopVideo();
     }
   }
@@ -125,5 +126,10 @@ const setPlayVideo = () => {
   <i class="stopVideo fas fa-video-slash"> </i>
   <span>Play Video</span>`
   document.querySelector('.main__video_button').innerHTML = html;
+}
+
+function closeWin() {
+  window.open('', '_parent', '');
+  window.close();
 }
 
