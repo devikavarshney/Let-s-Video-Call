@@ -35,12 +35,14 @@ navigator.mediaDevices
 
     $('html').keydown((e) => {
       if (e.which == 13 && text.val().length !== 0) {
+        console.log(text.val());
         socket.emit('message', text.val());
         text.val('');
       }
     })
 
     socket.on('createMessage', message => {
+      console.log(message);
       $(".messages").append(`<li class="message"><b>user</b><br/>${message}</li>`)
       scrollToBottom();
     })
@@ -124,13 +126,4 @@ const setPlayVideo = () => {
   <span>Play Video</span>`
   document.querySelector('.main__video_button').innerHTML = html;
 }
-// let chat = document.getElementById("chatSection");
-// const showHide = () =>{
-//   if(chat.style.display == "none"){
-//   chat.style.display = "block";
-//   }
-//   else{
-//     chat.style.display = "none";
-//   }
-// }
 
